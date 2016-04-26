@@ -1,0 +1,23 @@
+<div myslider>
+    <div ng-app="myApp">
+        <img src="../images/movie-night-ticket.jpg">
+        <form novalidate>
+            Search:<br>
+            <input type="text" ng-model="query"><br>
+            <button ng-click='search()'>SEARCH</button>
+        </form>
+    </div>
+</div>
+<h3>Results</h3>
+<div class="container cf">
+    <div>
+        <ul>
+            <li ng-repeat="movie in movies" ng-show="getImage(this)">
+                <a data-ng-href="#/detail/{{movie.id}}">
+                    <img src="https://image.tmdb.org/t/p/w92/{{movie.poster_path}}" alt="">
+                    {{movie.title}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
