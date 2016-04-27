@@ -13,20 +13,21 @@ angular.module('movies')
             });
         }
     })
-    .controller('DetailsCtrl', function ($scope, $routeParams, $timeout, DetailService,RatingService) {
+    .controller('DetailsCtrl', function ($scope, $routeParams, $timeout, DetailService,RatingService,rottenTomatoes) {
+        $scope.fresh;
         var id = $routeParams.id;
         DetailService.get({id: id, append_to_response: 'casts,trailers,images,similar_movies'}, function (result) {
-            console.log('detail results', result)
             $scope.details = result;
             $scope.title = result.original_title;
+            $scope.release_date = result.release_date;
             $scope.getVideo();
         });
 
-        RatingService.get({query: $scope.title}, function (result) {
-            $scope.audience_score = result.movies[0].ratings.audience_score;
-            $scope.rating = result.movies[0].mpaa_rating;
-            $scope.release_date = result.movies[0].release_dates.theater;
-        });
+        //RatingService.get({query: $scope.title}, function (result) {
+        //    $scope.audience_score = result.movies[0].ratings.audience_score;
+        //    $scope.rating = result.movies[0].mpaa_rating;
+        //    $scope.release_date = result.movies[0].release_dates.theater;
+        //});
 
         $scope.getVideo = function (e) {
             var self = this;
@@ -45,7 +46,42 @@ angular.module('movies')
                     });
                 }
             }, 2000);
+
+            $scope.getDetail()
         }
+
+        $scope.getDetail = function(){
+            var apikey = "fgknsgt8gv4hwfumspgerrmk";
+            var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
+            $q = encodeURIComponent($scope.title);
+            var moviesSearchUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=fgknsgt8gv4hwfumspgerrmk&q='+$q+'&page_limit=10';
+
+            $.ajax({
+                url: moviesSearchUrl,
+                dataType: "jsonp",
+                success: detCallback
+            });
+            function detCallback(result) {
+                var d = new Date($scope.release_date);
+                var y = d.getFullYear();
+                var match;
+                var i = 0;
+
+                while(i < result.movies.length){
+                    var yr = result.movies[i].year;
+                    if(yr == y) {
+                        match = result.movies[i];
+                        break;
+                    }
+                    i++;
+                }
+
+                $scope.audience_score = match.ratings.audience_score;
+                $scope.rating = match.mpaa_rating;
+                $scope.fresh = $scope.audience_score >= 50  ? true : false;
+            }
+        }
+
     })
     .factory('BoxOfficeService', function ($log, $resource) {
         var url = 'http://api.themoviedb.org/3/:method/:what';
@@ -56,9 +92,9 @@ angular.module('movies')
         );
     })
     .factory('RatingService', function ($log, $resource) {
+        var query = encodeURIComponent('batman');
         var url = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=fgknsgt8gv4hwfumspgerrmk&q=' + encodeURIComponent(query) + '&page_limit=1';
         var apikey = 'fgknsgt8gv4hwfumspgerrmk';
-        var query = encodeURIComponent('batman');
 
         return $resource(
             url, {

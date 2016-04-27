@@ -12,7 +12,7 @@
 <div class="container cf">
     <div>
         <ul>
-            <li ng-repeat="movie in movies" ng-show="getImage(this)">
+            <li ng-repeat="movie in movies">
                 <a data-ng-href="#/detail/{{movie.id}}">
                     <img src="https://image.tmdb.org/t/p/w92/{{movie.poster_path}}" alt="">
                     {{movie.title}}

@@ -2,19 +2,18 @@ angular.module('movies', [
       'ngRoute',
       'ngSanitize',
       'ngResource',
-      'youtube-embed'
+      'youtube-embed',
+      'ngRottenTomatoes'
     ])
       .value('lubTmdbApiKey', '1cec0394fa447a1f03d7a744faf9cbc9')
       .config(config);
+ // this prevents minification issues
+  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider','rottenTomatoesProvider'];
 
-  // safe dependency injection
-  // this prevents minification issues
-  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider'];
-
-  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
+  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider,rottenTomatoesProvider) {
 
     $locationProvider.html5Mode(false);
-
+    rottenTomatoesProvider.setKey('fgknsgt8gv4hwfumspgerrmk');
     // routes
     $routeProvider
       .when('/', {
@@ -32,17 +31,10 @@ angular.module('movies', [
       });
 
     $httpProvider.interceptors.push('authInterceptor');
-
+    rottenTomatoesProvider.setKey('YOUR_TOKEN');
   }
 
-
-  /**
-   * You can intercept any request or response inside authInterceptor
-   * or handle what should happend on 40x, 50x errors
-   *
-   */
-  angular
-    .module('movies')
+  angular.module('movies')
     .factory('authInterceptor', authInterceptor);
 
   authInterceptor.$inject = ['$rootScope', '$q', 'LocalStorage', '$location'];
@@ -69,10 +61,6 @@ angular.module('movies', [
     };
   }
 
-
-  /**
-   * Run block
-   */
   angular.module('movies')
     .run(run);
 

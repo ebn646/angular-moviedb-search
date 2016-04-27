@@ -1,0 +1,36 @@
+@import "partials/helpers";
+@import "modules/buttons";
+
+body{
+	background:#f5f5f5;
+}
+
+iframe{
+	display:block;
+}
+
+ul{
+	li{
+		list-style-type: none;
+	}
+}
+
+.main-wrapper,.vid,h1{
+	max-width:650px;
+	margin:0 auto;
+	img{
+		max-width:100%;
+	}
+}
+
+.row{
+	width: 100%;
+}
+
+.ng-hide {
+	/* this is just another form of hiding an element */
+	display: none!important;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
