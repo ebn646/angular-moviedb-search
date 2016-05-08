@@ -1,17 +1,17 @@
 'use strict';
 
-describe('movies.home module', function() {
+describe('movieSearchApp module', function() {
     var scope,
         controller;
     beforeEach(function () {
-        module('movies.home');
+        module('movieSearchApp');
 
     });
 
-    describe('MovieSearchCtrl', function(){
+    describe('MovieListCtrl', function(){
         beforeEach(inject(function ($rootScope, $controller) {
             scope = $rootScope.$new();
-            controller = $controller('MovieSearchCtrl', {
+            controller = $controller('MovieListCtrl', {
                 '$scope': scope
             });
         }));

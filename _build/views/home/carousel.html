@@ -1,0 +1,7 @@
+<slick slides-to-show=3 slides-to-scroll=1 autoplay=true class="slider" ng-if="dataLoaded" init-onload="false" data="dataLoaded" >
+    <div ng-repeat="movie in toprated | limitTo:5 ">
+        <a href="#/detail/{{movie.id}}" ui-sref="detail({ id: movie.id })" class="image">
+            <img ng-src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}">
+        </a>
+    </div>
+</slick>

@@ -1,4 +1,4 @@
-angular.module('movies')
+angular.module('movieSearchApp')
     .factory('QueryService', [
       '$http', '$q', 'CONSTANTS', QueryService
     ]);

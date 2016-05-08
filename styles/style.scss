@@ -1,8 +1,11 @@
 @import "partials/helpers";
 @import "modules/buttons";
+@import "partials/slick";
+@import "partials/slick-theme";
 
 body{
 	background:#f5f5f5;
+	color:black;
 }
 
 iframe{
@@ -20,14 +23,20 @@ ul{
 .main-wrapper,.vid,h1{
 	max-width:650px;
 	margin:0 auto;
+	background:grey;
 	img{
 		max-width:100%;
+	}
+
+	.video-container{
+		margin:0;
 	}
 }
 
 .row{
 	width: 100%;
 }
+
 
 .ng-hide {
 	display: none!important;

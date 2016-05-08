@@ -2,40 +2,39 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
-describe('my app', function() {
+describe('movieSearchApp', function() {
 
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
+  it('should automatically redirect to /home when location hash/fragment is empty', function() {
     browser.get('index.html');
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
+    expect(browser.getLocationAbsUrl()).toMatch("/home");
   });
 
 
-  describe('view1', function() {
+  describe('home page', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view1');
+      browser.get('/#/home');
     });
 
 
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+    it('should render home when user navigates to /home', function() {
+      expect(element.all(by.css('header')).first().getText()).
+        toMatch('SEARCH MOVIES');
     });
 
   });
 
 
-  describe('view2', function() {
+  describe('detail page', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view2');
+      browser.get('/#/detail/244786');
     });
 
 
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
+    it('should render movie detail when user navigates to /detail/244786', function() {
+      expect(element.all(by.css('h2')).first().getText()).
+        toMatch('Whiplash');
     });
 
   });

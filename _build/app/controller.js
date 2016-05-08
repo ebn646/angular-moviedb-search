@@ -1,6 +1,5 @@
-angular.module('movies')
-    .controller('MovieListCtrl', function ($scope, $http, $sanitize, $timeout, LocalStorage, BoxOfficeService, DetailService, RatingService) {
-        var self = this;
+angular.module('movieSearchApp')
+    .controller('MovieListCtrl', function ($scope, $stateParams, $routeParams, $sanitize, $timeout,BoxOfficeService, DetailService, RatingService) {
         $scope.query = '';
 
         $scope.search = function () {
@@ -8,6 +7,18 @@ angular.module('movies')
                 $scope.movies = result.results;
             });
         }
+    })
+    .controller('CarouselCtrl', function ($scope, $stateParams, $timeout, BoxOfficeService, DetailService, RatingService) {
+        var self = this;
+        $scope.query = '';
+
+        BoxOfficeService.get({method: 'movie', what: 'top_rated'}, function (result) {
+            $scope.toprated = result.results;
+
+            $timeout(function () {
+                $scope.dataLoaded = true;
+            });
+        });
     })
     .controller('DetailsCtrl', function ($scope, $stateParams, $routeParams, $timeout, DetailService, RatingService) {
         $scope.fresh;
@@ -55,14 +66,7 @@ angular.module('movies')
         }
 
     })
-    .factory('BoxOfficeService', function ($log, $resource) {
-        var url = 'http://api.themoviedb.org/3/:method/:what';
-        var apikey = 'a47daf25c6cd4e3f68c4ebee27270542';
-        return $resource(url,
-            {api_key: apikey, callback: 'JSON_CALLBACK'},
-            {get: {method: 'JSONP', requestType: 'json'}}
-        );
-    })
+
     .factory('RatingService', function ($http, $q) {
         var service = {};
         var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json?apikey=fgknsgt8gv4hwfumspgerrmk&type=imdb&id=';

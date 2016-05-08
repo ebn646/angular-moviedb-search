@@ -1,5 +1,5 @@
 <!doctype html>
-<!--[if gt IE 8]><!--> <html lang="en" ng-csp="" ng-app="movies"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="movieSearchApp"> <!--<![endif]-->
 	<head>
 		<base href="/">
 		<meta charset="utf-8">
@@ -14,11 +14,11 @@
 		<meta name="msapplication-TileColor" content="#f01d4f">
 		<!-- build:css css/style.min.css -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/css/style.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 		<!-- endbuild -->
 	</head>
-	<body class="main-wrapper">
-		<div ui-view></div>
+	<body>
+		<div ui-view class="main-wrapper"></div>
 	</body>
 
 	<!-- Vendors -->
@@ -34,25 +34,26 @@
 
 	<!-- Angular external libraries for application -->
 	<!-- build:angularlibs js/angularlibs.js -->
-	<script type="text/javascript" src="/lib/angular/angular.js"></script>
-	<script type="text/javascript" src="/lib/angular/angular-route.min.js"></script>
-	<script type="text/javascript" src="/lib/angular/angular-ui-router.js"></script>
-	<script type="text/javascript" src="/lib/angular/angular-resource.min.js"></script>
-	<script type="text/javascript" src="/lib/angular/angular-sanitize.min.js"></script>
+	<script src="/lib/angular/angular.js"></script>
+	<script src="/lib/angular/angular-route.min.js"></script>
+	<script src="/lib/angular/angular-ui-router.js"></script>
+	<script src="/lib/angular/angular-resource.min.js"></script>
+	<script src="/lib/angular/angular-sanitize.min.js"></script>
 	<script src="/lib/vendor/angular-youtube-embed.min.js"></script>
+	<script src="/lib/vendor/slick.js"></script>
+	<script src="/lib/angular/slick.js"></script>
+
 	<!-- endbuild -->
 
 	<!-- Angular components -->
 	<!-- build:appcomponents js/appcomponents.js -->
 	<script type="text/javascript" src="/app/app.js"></script>
-	<script type="text/javascript" src="/views/home/home.js"></script>
-	<script type="text/javascript" src="components/services/LocalStorage.service.js"></script>
+	<script type="text/javascript" src="/app/controller.js"></script>
+
+	<script type="text/javascript" src="components/services/BoxOfficeService.js"></script>
 	<script type="text/javascript" src="components/services/queryService.service.js"></script>
 	<!-- endbuild -->
-
 	<!-- Application sections -->
 	<!-- build:mainapp js/mainapp.js -->
-	<script type="text/javascript" src="app/factory.js"></script>
-	<script type="text/javascript" src="app/controller.js"></script>
 	<!-- endbuild -->
 </html>
