@@ -9,10 +9,12 @@
                 <youtube-video video-id="theBestVideo"></youtube-video>
             </div>
             <div ng-if="!hasVideo">
-                <img ng-src="https://image.tmdb.org/t/p/w150/{{details.poster_path}}" height="390" width="auto" alt="">
+                <img ng-src="https://image.tmdb.org/t/p/w150/{{details.poster_path}}" height="auto" width="auto" alt="">
             </div>
             <br/>
-            <h2 ng-show="fresh">{{details.title}}</h2><span>audience score {{audience_score}}</span><img ng-hide="!fresh" ng-src="/images/fresh-16.png"/><img ng-hide="fresh" ng-src="/images/splat-16.png"/>
+            <div ng-show="audienceHasScore">
+                <h2  fresh">{{details.title}}</h2><span>audience score {{audience_score}}</span><img ng-hide="!fresh" ng-src="/images/fresh-16.png"/><img ng-hide="fresh" ng-src="/images/splat-16.png"/>
+            </div>
             <p>{{details.overview}}</p>
             <h3>Information</h3>
             <p>Rated {{rating}}</p>

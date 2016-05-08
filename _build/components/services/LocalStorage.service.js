@@ -26,7 +26,6 @@ angular.module('movies')
           }
         });
 
-
         return {
           set: set,
           get: get,

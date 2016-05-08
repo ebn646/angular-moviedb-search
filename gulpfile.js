@@ -15,7 +15,7 @@
  * 6. minify and copy all JS files
  * 7. copy fonts
  * 8. show build folder size
- * 
+ *
  */
 var gulp            = require('gulp'),
     browserSync     = require('browser-sync'),
@@ -39,11 +39,11 @@ gulp.task('images', function() {
 
 // browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
-  //browserSync({
-  //  server: {
-  //    baseDir: "./"
-  //  }
-  //});
+  browserSync({
+    server: {
+      baseDir: "./_build"
+    }
+  });
 });
 
 // minify JS
@@ -86,7 +86,7 @@ gulp.task('fonts', function() {
 gulp.task('server', function(done) {
   return browserSync({
     server: {
-      baseDir: './'
+      baseDir: './_build/'
     }
   }, done);
 });
@@ -129,7 +129,7 @@ gulp.task('sass', function() {
       message: 'Error(s) occurred during compile!'
     }))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('styles'))
+    .pipe(gulp.dest('./_build/css/'))
     .pipe(reload({
       stream: true
     }))
@@ -255,7 +255,7 @@ gulp.task('default', ['browser-sync', 'sass', 'minify-css'], function() {
  * 6. minify and copy all JS files
  * 7. copy fonts
  * 8. show build folder size
- * 
+ *
  */
 gulp.task('build', function(callback) {
   runSequence(

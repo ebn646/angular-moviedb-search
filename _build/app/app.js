@@ -2,18 +2,16 @@ angular.module('movies', [
       'ngRoute',
       'ngSanitize',
       'ngResource',
-      'youtube-embed',
-      'ngRottenTomatoes'
+      'youtube-embed'
     ])
       .value('lubTmdbApiKey', '1cec0394fa447a1f03d7a744faf9cbc9')
       .config(config);
  // this prevents minification issues
-  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider','rottenTomatoesProvider'];
+  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider'];
 
-  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider,rottenTomatoesProvider) {
+  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
 
     $locationProvider.html5Mode(false);
-    rottenTomatoesProvider.setKey('fgknsgt8gv4hwfumspgerrmk');
     // routes
     $routeProvider
       .when('/', {
@@ -31,7 +29,6 @@ angular.module('movies', [
       });
 
     $httpProvider.interceptors.push('authInterceptor');
-    rottenTomatoesProvider.setKey('YOUR_TOKEN');
   }
 
   angular.module('movies')
