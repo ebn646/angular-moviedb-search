@@ -9,11 +9,11 @@ angular.module('movies')
             });
         }
     })
-    .controller('DetailsCtrl', function ($scope, $routeParams, $timeout, DetailService, RatingService) {
+    .controller('DetailsCtrl', function ($scope, $stateParams, $routeParams, $timeout, DetailService, RatingService) {
         $scope.fresh;
         $scope.audienceHasScore;
 
-        var id = $routeParams.id;
+        var id = $stateParams.id;
         DetailService.get({id: id, append_to_response: 'casts,trailers,images,similar_movies'}, function (result) {
             $scope.details = result;
             $scope.title = result.original_title;

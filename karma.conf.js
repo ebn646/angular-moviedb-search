@@ -11,7 +11,7 @@ module.exports = function(config){
             'bower_components/angular-resource/angular-resource.js',
             '_build/lib/**/*.js',
             '_build/app/*.js',
-            '_build/view*/*.js'
+            '_build/views/**/*.js'
         ],
 
         autoWatch : true,

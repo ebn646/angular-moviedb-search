@@ -2,33 +2,52 @@ angular.module('movies', [
       'ngRoute',
       'ngSanitize',
       'ngResource',
+      'ui.router',
       'youtube-embed'
     ])
       .value('lubTmdbApiKey', '1cec0394fa447a1f03d7a744faf9cbc9')
       .config(config);
  // this prevents minification issues
-  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider'];
+  config.$inject = ['$urlRouterProvider', '$locationProvider', '$httpProvider', '$compileProvider','$stateProvider'];
 
-  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
+  function config($urlRouterProvider, $locationProvider, $httpProvider, $compileProvider,$stateProvider) {
 
     $locationProvider.html5Mode(false);
     // routes
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'MovieListCtrl',
-        controllerAs: 'main'
-      })
-      .when('/detail/:id', {
-        templateUrl: 'views/detail.html',
-        controller: 'DetailsCtrl',
-        controllerAs: 'main'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+    //$routeProvider
+    //  .when('/', {
+    //    templateUrl: 'views/home.html',
+    //    controller: 'MovieListCtrl',
+    //    controllerAs: 'main'
+    //  })
+    //  .when('/detail/:id', {
+    //    templateUrl: 'views/detail.html',
+    //    controller: 'DetailsCtrl',
+    //    controllerAs: 'main'
+    //  })
+    //  .otherwise({
+    //    redirectTo: '/'
+    //  });
+    //
+    //$httpProvider.interceptors.push('authInterceptor');
+    $urlRouterProvider.otherwise('/home');
 
-    $httpProvider.interceptors.push('authInterceptor');
+    $stateProvider
+
+    // HOME STATES AND NESTED VIEWS ========================================
+        .state('home', {
+          url: '/home',
+          templateUrl: 'views/home/home.html',
+          controller:'MovieListCtrl'
+        })
+
+        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
+        .state('detail', {
+          url: "/detail/{id}",
+          templateUrl: "views/detail.html",
+          controller:'DetailsCtrl'
+        });
+
   }
 
   angular.module('movies')

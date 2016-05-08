@@ -1,6 +1,7 @@
 <div myslider>
     <div ng-app="myApp">
         <img src="../images/movie-night-ticket.jpg">
+        <div ui-view="carousel"></div>
         <form novalidate>
             Search:<br>
             <input type="text" ng-model="query"><br>
@@ -13,7 +14,7 @@
     <div>
         <ul>
             <li ng-repeat="movie in movies">
-                <a data-ng-href="#/detail/{{movie.id}}">
+                <a href="#/detail/{{movie.id}}" ui-sref="detail({ id: movie.id })">
                     <img src="https://image.tmdb.org/t/p/w92/{{movie.poster_path}}" alt="">
                     {{movie.title}}{{}}
                 </a>
