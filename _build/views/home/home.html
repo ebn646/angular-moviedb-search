@@ -14,7 +14,7 @@
         <ul>
             <li ng-repeat="movie in movies">
                 <a href="#/detail/{{movie.id}}" ui-sref="detail({ id: movie.id })">
-                    <img src="https://image.tmdb.org/t/p/w92/{{movie.poster_path}}" alt="">
+                    <img ng-src="https://image.tmdb.org/t/p/w92/{{movie.poster_path}}" alt="">
                     {{movie.title}}{{}}
                 </a>
             </li>

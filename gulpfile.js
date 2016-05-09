@@ -152,9 +152,6 @@ gulp.task('sass:build', function() {
       ignore: [
         '.index',
         '.slick',
-        /\.owl+/,
-        /\.owl-next/,
-        /\.owl-prev/
       ]
     }))
     .pipe($.minifyCss({

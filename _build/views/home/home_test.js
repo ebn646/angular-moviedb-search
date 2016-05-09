@@ -24,4 +24,17 @@ describe('movieSearchApp module', function() {
             expect(scope.query).toBe('');
         });
     });
+
+    describe('CarouselCtrl', function(){
+        beforeEach(inject(function ($rootScope, $controller) {
+            scope = $rootScope.$new();
+            controller = $controller('CarouselCtrl', {
+                '$scope': scope
+            });
+        }));
+
+        it('should ....', inject(function($rootScope, $controller) {
+            expect(controller).toBeDefined();
+        }));
+    });
 });
