@@ -22,7 +22,7 @@ angular.module('movieSearchApp')
         data: data
       }).then(function(data) {
         if (!data.config) {
-          console.log('Server error occured.');
+          console.log('Server error occurred.');
         }
         deferred.resolve(data);
       }, function(error) {
